@@ -1,3 +1,8 @@
+//import dependencies
+var inquirer = require("inquirer");
+var fs = require("fs");
+
+//varaible that contains all the questions the user will be asked
 const questions = [
     {
         type: "input",
@@ -31,7 +36,7 @@ const questions = [
             "CC0 (Public Domain)",
             "CC BY 4.0",
             "CC BY-SA 4.0"
-        ]
+        ],
         name: "license"
     },
     {
@@ -78,3 +83,14 @@ function init() {
 init();
 
 
+inquirer.prompt(questions).then(function(data){
+    var filename = "userInput.json"
+
+    fs.writeFile(filename, JSON.stringify(data), function(err){
+        if (err) {
+            return console.log(err);
+        }
+        console.log("success")
+    })
+
+});

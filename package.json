@@ -1,7 +1,7 @@
 {
   "name": "static-site",
   "version": "1.0.0",
-  "description": "",
+  "description": "A command-line application that dynamically generates a README.md from a user's input.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,17 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.0.0",
+    "file-system": "^2.2.2",
     "inquirer": "^6.3.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricklevy21/readMeGenerator_hw.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ricklevy21/readMeGenerator_hw/issues"
+  },
+  "homepage": "https://github.com/ricklevy21/readMeGenerator_hw#readme"
 }
