@@ -1,6 +1,7 @@
 //import dependencies
 var inquirer = require("inquirer");
 var fs = require("fs");
+var generateMarkdown = require("./generateMarkdown.js")
 
 //varaible that contains all the questions the user will be asked
 const questions = [
@@ -40,19 +41,9 @@ const questions = [
         name: "license"
     },
     {
-        type: "confirm",
-        message: "Would you like to add guidlines for contributors?",
-        name: "confrimContributors"
-    },
-    {
         type: "input",
         message: "Please add guidelines for contributors:",
         name: "contributors"
-    },
-    {
-        type: "confirm",
-        message: "Do you have any tests for your project?",
-        name: "confirmTests"
     },
     {
         type: "input",
@@ -60,37 +51,40 @@ const questions = [
         name: "tests"
     },
     {
-        type: "confirm",
-        message: "Would you like to provide contact information?",
-        name: "confirmContact"
-    },
-    {
         type: "input",
         message: "Please enter your email addess:",
         name: "contact"
     }
+    
 ];
+
+
+
+
 
 //function that writes all of the user's responses to a README.md file
 function writeToFile(fileName, data) {
-}
+    fs.writeFile(fileName, generateMarkdown(data), function(err) {
+
+        if (err) {
+          return console.log(err);
+        }
+      
+        console.log("Success!");
+      
+      });
+    }
 
 
 function init() {
-
+    //function that asks the users questions and puts answers into an object.
+    inquirer.prompt(questions)
+    //promise for what to do with the user supplied answers
+    .then(answers => {
+        console.log(answers)
+        writeToFile("READMEnew.md", answers);
+        })
 }
 
 init();
 
-
-inquirer.prompt(questions).then(function(data){
-    var filename = "userInput.json"
-
-    fs.writeFile(filename, JSON.stringify(data), function(err){
-        if (err) {
-            return console.log(err);
-        }
-        console.log("success")
-    })
-
-});
