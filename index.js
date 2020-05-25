@@ -34,9 +34,9 @@ const questions = [
         type: "checkbox",
         message: "Please select a license:",
         choices: [
-            "CC0 (Public Domain)",
-            "CC BY 4.0",
-            "CC BY-SA 4.0"
+            "MIT",
+            "Apache",
+            "GPLv2"
         ],
         name: "license"
     },
@@ -59,9 +59,6 @@ const questions = [
 ];
 
 
-
-
-
 //function that writes all of the user's responses to a README.md file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, generateMarkdown(data), function(err) {
@@ -82,7 +79,7 @@ function init() {
     //promise for what to do with the user supplied answers
     .then(answers => {
         console.log(answers)
-        writeToFile("READMEnew.md", answers);
+        writeToFile("README.md", answers);
         })
 }
 
